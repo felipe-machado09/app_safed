@@ -51,7 +51,7 @@ class SendMailJob implements ShouldQueue
         $now = Str::uuid();
         $nameFile =  $now.".xlsx";
         $pathPublic = "public\Excel\\";
-        $path = "Excel\\";
+        $path = "Excel/";
 
         $fileType = "xlsx";
 
