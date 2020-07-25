@@ -17,9 +17,8 @@ class ForceJson
     public function handle($request, Closure $next)
     {
         // Force Json accept type
-        if (! Str::contains($request->header('accept'), ['/json', '+json'])) {
-            $request->headers->set('accept', 'application/json,' . $request->header('accept'));
-        }
+        $request->headers->set('Accept', 'application/json');
+
         return $next($request);
     }
 }
