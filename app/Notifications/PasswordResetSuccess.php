@@ -40,7 +40,7 @@ class PasswordResetSuccess extends Notification
      */
     public function toMail($notifiable)
     {
-        $newPassword = $this->newPassword;
+        $newPassword = $this->newPassword->newPassword;
         return (new MailMessage)
         ->line('Você alterou sua senha com sucesso.')
         ->line('Sua nova senha é: '. $newPassword )
