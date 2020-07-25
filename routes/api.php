@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group([
-    'middleware' => 'api',
+    'middleware' => ['api','forceJson'],
     'prefix' => 'password'
 ], function () {
     Route::post('reset', 'PasswordResetController@create');
@@ -15,7 +15,7 @@ Route::group([
 
 Route::group(['prefix' => 'auth'], function () {
     Route::post('login', 'AuthController@login');
-    Route::group(['middleware' => 'auth:api'], function() {
+    Route::group(['middleware' => ['auth:api','forceJson']], function() {
         Route::get('logout', 'AuthController@logout');
         Route::get('user', 'AuthController@user');
     });
@@ -26,7 +26,7 @@ Route::middleware('auth:api')->get('/auth/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['middleware' => 'auth:api','prefix' => 'barcode'], function() {
+Route::group(['middleware' => ['auth:api', 'forceJson'],'prefix' => 'barcode'], function() {
     Route::get('/', 'BarCodeController@index');
     Route::post('/', 'BarCodeController@store');
     Route::get('/export/yesterday', 'BarCodeController@ExportExcelYesterday');
@@ -36,7 +36,7 @@ Route::group(['middleware' => 'auth:api','prefix' => 'barcode'], function() {
     Route::get('/export/interval', 'BarCodeController@ExportExcelInterval');
 
 });
-Route::group(['middleware' => 'auth:api','prefix' => 'user'], function() {
+Route::group(['middleware' => ['auth:api','forceJson'],'prefix' => 'user'], function() {
     Route::get('/', 'UserController@index');
     Route::post('/', 'UserController@store');
     Route::put('/{id}', 'UserController@update');
