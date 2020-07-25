@@ -63,7 +63,24 @@ class PasswordResetController extends Controller
                 'message' => 'Este token de redefinição de senha é inválido.'
             ], 404);
         }
-        return response()->json($passwordReset);
+        $user = User::where('email', $passwordReset->email)->first();
+        if (!$user)
+            return response()->json([
+                'message' => "Não conseguimos encontrar um usuário com esse endereço de email."
+            ], 404);
+
+        $newPassword = Str::random(8);
+        $user->password = bcrypt($newPassword);
+        $user->save();
+        $passwordReset->newPassword = $newPassword;
+        $passwordReset->delete();
+        $user->notify(new PasswordResetSuccess($passwordReset));
+
+        return response()->json($user);
+
+
+
+        // return response()->json($passwordReset);
     }
      /**
      * Reset password

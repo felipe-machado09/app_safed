@@ -10,7 +10,7 @@ use Illuminate\Notifications\Notification;
 class PasswordResetSuccess extends Notification
 {
     use Queueable;
-
+    protected $newPassword;
     /**
      * Create a new notification instance.
      *
@@ -18,7 +18,7 @@ class PasswordResetSuccess extends Notification
      */
     public function __construct()
     {
-        //
+        $this->newPassword = $newPassword;
     }
 
     /**
@@ -40,10 +40,11 @@ class PasswordResetSuccess extends Notification
      */
     public function toMail($notifiable)
     {
+        $newPassword = $this->newPassword;
         return (new MailMessage)
         ->line('Você alterou sua senha com sucesso.')
-        ->line('Se você alterou a senha, nenhuma ação adicional será necessária.')
-        ->line('Se você não alterou a senha, proteja sua conta.Se você não alterou a senha, proteja sua conta.');
+        ->line('Sua nova senha é: '. $newPassword )
+        ->line('Faça o login no aplicativo com a sua nova senha');
     }
 
     /**
