@@ -7,6 +7,7 @@ use App\Models\User;
 use DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\UserUpdateRequest;
 use Auth;
 use Validator;
 use Illuminate\Support\Facades\Hash;
@@ -58,8 +59,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserRequest $request, $id)
+    public function update(updateUser $request, $id)
     {
+        $validated = $request->validated();
         $user = User::find($id);
 
         if(isset($user)){
