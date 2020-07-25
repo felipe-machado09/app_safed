@@ -26,7 +26,7 @@ class UserRequest extends FormRequest
     {
         return [
           "name" => "required",Rule::unique('users')->ignore(request('user')),
-          "email" => 'required,email',Rule::unique('users')->ignore(request('user')),
+          "email" => 'required|email',Rule::unique('users')->ignore(request('user')),
           "password" => "required"
         ];
     }
