@@ -21,11 +21,11 @@ class UserRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules($id)
     {
         return [
           "name" => "required|unique:users",
-          "email" => "required|email|unique:users,{$this->user->id}",
+          "email" => 'required|email|unique:users,'.$id,
           "password" => "required"
         ];
     }
