@@ -16,7 +16,7 @@ class PasswordResetSuccess extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($newPassword)
     {
         $this->newPassword = $newPassword;
     }
