@@ -23,9 +23,9 @@ class UserUpdateRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            "name" => Rule::unique('users')->ignore(request('user')),
-            "email" => 'required|email',Rule::unique('users')->ignore(request('user')),
-          ];
+        // return [
+        //     "name" => Rule::unique('users')->ignore(request('user')),
+        //     "email" => 'required|email',Rule::unique('users')->ignore(request('user')),
+        // ];
     }
 }

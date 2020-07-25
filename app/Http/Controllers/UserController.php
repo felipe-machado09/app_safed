@@ -59,9 +59,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserUpdateRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $validated = $request->validated();
+      //  $validated = $request->validated();
         $user = User::find($id);
 
         if(isset($user)){
