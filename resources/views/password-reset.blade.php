@@ -45,7 +45,7 @@
             }
 
             .title {
-                font-size: 84px;
+                font-size: 30px;
             }
 
             .links > a {
@@ -77,7 +77,7 @@
 
         <script>
             function fecharAba() {
-                setTimeout(function(){ window.close() }, 3000);
+                setTimeout(function(){ window.close() }, 5000);
             }
             fecharAba();
 

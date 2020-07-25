@@ -42,6 +42,7 @@ class PasswordResetRequest extends Notification
     {
         $url = url('/api/password/find/'.$this->token);
         return (new MailMessage)
+            ->subject('Reset de senha')
             ->line('Você está recebendo este e-mail porque recebemos uma solicitação de redefinição de senha para sua conta.')
             ->action('Reset Password', url($url))
             ->line('Se você não solicitou uma redefinição de senha, nenhuma ação adicional será necessária.');

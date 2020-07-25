@@ -42,6 +42,7 @@ class PasswordResetSuccess extends Notification
     {
         $newPassword = $this->newPassword->newPassword;
         return (new MailMessage)
+        ->subject('Senha resetada com sucesso')
         ->line('Você alterou sua senha com sucesso.')
         ->line('Sua nova senha é: '. $newPassword )
         ->line('Faça o login no aplicativo com a sua nova senha');
