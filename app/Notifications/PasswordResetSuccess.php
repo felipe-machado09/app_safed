@@ -41,9 +41,9 @@ class PasswordResetSuccess extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-        ->line('You are changed your password successful.')
-        ->line('If you did change password, no further action is required.')
-        ->line('If you did not change password, protect your account.');
+        ->line('Você alterou sua senha com sucesso.')
+        ->line('Se você alterou a senha, nenhuma ação adicional será necessária.')
+        ->line('Se você não alterou a senha, proteja sua conta.Se você não alterou a senha, proteja sua conta.');
     }
 
     /**

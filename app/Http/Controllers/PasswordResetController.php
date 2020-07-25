@@ -55,12 +55,12 @@ class PasswordResetController extends Controller
             ->first();
         if (!$passwordReset)
             return response()->json([
-                'message' => 'This password reset token is invalid.'
+                'message' => 'Este token de redefinição de senha é inválido.'
             ], 404);
         if (Carbon::parse($passwordReset->updated_at)->addMinutes(720)->isPast()) {
             $passwordReset->delete();
             return response()->json([
-                'message' => 'This password reset token is invalid.'
+                'message' => 'Este token de redefinição de senha é inválido.'
             ], 404);
         }
         return response()->json($passwordReset);
@@ -88,12 +88,12 @@ class PasswordResetController extends Controller
         ])->first();
         if (!$passwordReset)
             return response()->json([
-                'message' => 'This password reset token is invalid.'
+                'message' => 'Este token de redefinição de senha é inválido.'
             ], 404);
         $user = User::where('email', $passwordReset->email)->first();
         if (!$user)
             return response()->json([
-                'message' => "We can't find a user with that e-mail address."
+                'message' => "Não conseguimos encontrar um usuário com esse endereço de email."
             ], 404);
         $user->password = bcrypt($request->password);
         $user->save();
