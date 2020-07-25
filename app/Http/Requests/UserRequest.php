@@ -25,7 +25,7 @@ class UserRequest extends FormRequest
     {
         return [
           "name" => "required|unique:users",
-          "email" => "required|email|unique:users,{$this->post->id}",
+          "email" => "required|email|unique:users,{$this->user->id}",
           "password" => "required"
         ];
     }
