@@ -7,6 +7,7 @@ use App\Notifications\PasswordResetRequest;
 use App\Notifications\PasswordResetSuccess;
 use App\Models\User;
 use App\Models\PasswordReset;
+use Illuminate\Support\Str;
 
 class PasswordResetController extends Controller
 {
@@ -24,13 +25,13 @@ class PasswordResetController extends Controller
         $user = User::where('email', $request->email)->first();
         if (!$user)
             return response()->json([
-                'message' => "We can't find a user with that e-mail address."
+                'message' => "Não conseguimos encontrar um usuário com esse endereço de email."
             ], 404);
         $passwordReset = PasswordReset::updateOrCreate(
             ['email' => $user->email],
             [
                 'email' => $user->email,
-                'token' => str_random(60)
+                'token' => Str::random(60)
              ]
         );
         if ($user && $passwordReset)
@@ -38,7 +39,7 @@ class PasswordResetController extends Controller
                 new PasswordResetRequest($passwordReset->token)
             );
         return response()->json([
-            'message' => 'We have e-mailed your password reset link!'
+            'message' => 'Enviamos seu link de redefinição de senha por e-mail!'
         ]);
     }
     /**
